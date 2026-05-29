@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class main {
     
-    // Função para calcular a média das alturas
+    
     static double calcularMedia(double[] alturas) {
         double soma = 0;
         for (double altura : alturas) {
@@ -11,7 +11,7 @@ public class main {
         return soma / alturas.length;
     }
     
-    // Procedimento para exibir os resultados finais
+    
     static void exibirResultados(double[] alturas, double media) {
         double maiorAltura = alturas[0];
         double menorAltura = alturas[0];
@@ -41,23 +41,23 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         double[] alturas = new double[10];
         
-        // Receber as alturas de 10 pessoas
+        
         System.out.println("=== CONTROLE DE ALTURAS ===\n");
         for (int i = 0; i < 10; i++) {
             System.out.print("Digite a altura da pessoa " + (i + 1) + " (em metros): ");
             alturas[i] = scanner.nextDouble();
         }
         
-        // Mostrar todas as alturas cadastradas
+        
         System.out.println("\n--- Alturas Cadastradas ---");
         for (int i = 0; i < 10; i++) {
             System.out.printf("Pessoa %d: %.2f m\n", (i + 1), alturas[i]);
         }
         
-        // Calcular a média
+        
         double media = calcularMedia(alturas);
         
-        // Exibir resultados finais
+        
         exibirResultados(alturas, media);
         
         scanner.close();
