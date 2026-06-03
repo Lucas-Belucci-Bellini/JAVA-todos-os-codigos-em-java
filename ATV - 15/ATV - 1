@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+class AcademiaCorrida {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        mostrarCabecalho();
+        String nome = lerNome(scanner);
+        double distancia = lerDistancia(scanner);
+        double tempo = lerTempo(scanner);
+        double velocidade = calcularVelocidade(distancia, tempo);
+        String classificacao = classificarDesempenho(velocidade);
+        mostrarRelatorio(nome, distancia, tempo, velocidade, classificacao);
+        encerrarSistema();
+
+        scanner.close();
+    }
+
+    static void mostrarCabecalho() {
+        System.out.println("============================================");
+        System.out.println("     Sistema de Avaliação de Corrida");
+        System.out.println("============================================");
+    }
+
+    static String lerNome(Scanner scanner) {
+        System.out.print("Nome do aluno: ");
+        return scanner.nextLine().trim();
+    }
+
+    static double lerDistancia(Scanner scanner) {
+        System.out.print("Distância percorrida (km): ");
+        while (!scanner.hasNextDouble()) {
+            System.out.print("Valor inválido. Digite a distância em km: ");
+            scanner.next();
+        }
+        return scanner.nextDouble();
+    }
+
+    static double lerTempo(Scanner scanner) {
+        System.out.print("Tempo gasto (minutos): ");
+        while (!scanner.hasNextDouble()) {
+            System.out.print("Valor inválido. Digite o tempo em minutos: ");
+            scanner.next();
+        }
+        return scanner.nextDouble();
+    }
+
+    static double calcularVelocidade(double distancia, double tempo) {
+        if (tempo <= 0) {
+            return 0;
+        }
+        double horas = tempo / 60.0;
+        return distancia / horas;
+    }
+
+    static String classificarDesempenho(double velocidade) {
+        if (velocidade < 8.0) {
+            return "Iniciante";
+        } else if (velocidade <= 12.0) {
+            return "Intermediário";
+        } else {
+            return "Avançado";
+        }
+    }
+
+    static void mostrarRelatorio(String nome, double distancia, double tempo, double velocidade, String classificacao) {
+        System.out.println();
+        System.out.println("Relatório de Desempenho");
+        System.out.println("-----------------------");
+        System.out.println("Aluno: " + nome);
+        System.out.printf("Distância: %.2f km\n", distancia);
+        System.out.printf("Tempo: %.2f minutos\n", tempo);
+        System.out.printf("Velocidade média: %.2f km/h\n", velocidade);
+        System.out.println("Classificação: " + classificacao);
+    }
+
+    static void encerrarSistema() {
+        System.out.println();
+        System.out.println("Obrigado por utilizar o sistema de avaliação de corrida.");
+        System.out.println("Encerrando programa...");
+    }
+}
