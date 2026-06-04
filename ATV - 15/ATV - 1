@@ -1,0 +1,101 @@
+import java.util.Scanner;
+
+public class ATV1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        mostrarCabecalho();
+        String nome = lerNome(scanner);
+        double distancia = lerDistancia(scanner);
+        double tempo = lerTempo(scanner);
+        double velocidade = calcularVelocidade(distancia, tempo);
+        String classificacao = classificarDesempenho(velocidade);
+        mostrarRelatorio(nome, distancia, tempo, velocidade, classificacao);
+        encerrarSistema();
+
+        System.out.println();
+        mostrarCabecalhoLogistica();
+        int numero = lerNumeroPositivo(scanner);
+        long fatorial = calcularFatorialRecursivo(numero);
+        mostrarResultadoFatorial(numero, fatorial);
+        encerrarSistemaLogistica();
+
+        scanner.close();
+    }
+
+    public static void mostrarCabecalho() {
+        System.out.println("=== Sistema de Desempenho em Corrida ===");
+    }
+
+    public static String lerNome(Scanner scanner) {
+        System.out.print("Informe o nome do aluno: ");
+        scanner.nextLine();
+        return scanner.nextLine().trim();
+    }
+
+    public static double lerDistancia(Scanner scanner) {
+        System.out.print("Informe a distancia percorrida (em km): ");
+        return scanner.nextDouble();
+    }
+
+    public static double lerTempo(Scanner scanner) {
+        System.out.print("Informe o tempo gasto (em minutos): ");
+        return scanner.nextDouble();
+    }
+
+    public static double calcularVelocidade(double distancia, double tempo) {
+        return distancia / (tempo / 60.0);
+    }
+
+    public static String classificarDesempenho(double velocidade) {
+        if (velocidade < 8.0) {
+            return "Iniciante";
+        } else if (velocidade <= 12.0) {
+            return "Intermediario";
+        } else {
+            return "Avancado";
+        }
+    }
+
+    public static void mostrarRelatorio(String nome, double distancia, double tempo, double velocidade, String classificacao) {
+        System.out.println("\n--- Relatorio do Aluno ---");
+        System.out.println("Nome: " + nome);
+        System.out.printf("Distancia: %.2f km\n", distancia);
+        System.out.printf("Tempo: %.2f minutos\n", tempo);
+        System.out.printf("Velocidade media: %.2f km/h\n", velocidade);
+        System.out.println("Classificacao: " + classificacao);
+    }
+
+    public static void encerrarSistema() {
+        System.out.println("Sistema de corrida encerrado.");
+    }
+
+    public static void mostrarCabecalhoLogistica() {
+        System.out.println("=== Sistema de Fatorial para Logistica ===");
+    }
+
+    public static int lerNumeroPositivo(Scanner scanner) {
+        System.out.print("Informe um numero inteiro positivo: ");
+        int numero = scanner.nextInt();
+        while (numero < 0) {
+            System.out.print("Valor invalido. Informe um numero inteiro positivo: ");
+            numero = scanner.nextInt();
+        }
+        return numero;
+    }
+
+    public static long calcularFatorialRecursivo(int numero) {
+        if (numero <= 1) {
+            return 1;
+        }
+        return numero * calcularFatorialRecursivo(numero - 1);
+    }
+
+    public static void mostrarResultadoFatorial(int numero, long fatorial) {
+        System.out.println("O fatorial de " + numero + " e: " + fatorial);
+    }
+
+    public static void encerrarSistemaLogistica() {
+        System.out.println("Sistema de logística encerrado.");
+    }
+}
